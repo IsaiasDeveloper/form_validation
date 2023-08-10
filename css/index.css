@@ -1,0 +1,151 @@
+:root {
+  --blackColor: #000;
+  --whiteColor: #fff;
+  --greenColor: #008000;
+  --errorMsg: #ff0000;
+
+  --input-radius: 5px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Montserrat';
+}
+.formContainer {
+  max-width: 500px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 40px 10px;
+}
+h2 {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  row-gap: 15px;
+}
+.formInput {
+  border: 1px solid;
+  border-radius: var(--input-radius);
+  padding: 5px;
+  height: 35px;
+  background-color: transparent;
+  width: 100%;
+  outline: none;
+}
+.labelInput {
+  display: none;
+}
+.form-group {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cep-input {
+  border: 1px solid;
+  border-radius: var(--input-radius);
+  padding: 5px;
+  height: 35px;
+  background-color: transparent;
+  max-width: 150px;
+  width: 100%;
+  outline: none;
+}
+.form-group p {
+  background-color: var(--blackColor);
+  color: var(--whiteColor);
+  font-weight: 500;
+  font-size: 13px;
+  padding: 5px;
+  border-radius: 20px;
+  max-width: 310px;
+  width: 100%;
+  min-height: 35px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.6s;
+  cursor: pointer;
+}
+.form-group p:hover,
+.formBtn:hover {
+  transform: scale(1.02);
+}
+.form-group p:active,
+.formBtn:active {
+  filter: brightness(75%);
+}
+.state-input {
+  border: 1px solid;
+  border-radius: var(--input-radius);
+  padding: 5px;
+  height: 35px;
+  background-color: transparent;
+  max-width: 150px;
+  width: 100%;
+  outline: none;
+}
+.city-input {
+  border: 1px solid;
+  border-radius: var(--input-radius);
+  padding: 5px;
+  height: 35px;
+  background-color: transparent;
+  max-width: 315px;
+  width: 100%;
+  outline: none;
+}
+.formBtn {
+  border: none;
+  color: var(--whiteColor);
+  background-color: var(--greenColor);
+  border-radius: 20px;
+  padding: 10px 35px;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 20px auto 0;
+  transition: all 0.4s;
+}
+.erroMsg {
+  font-size: 13px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--errorMsg);
+}
+.fieldError {
+  outline: auto;
+  outline-color: var(--errorMsg);
+}
+@media (max-width: 576px) {
+  .form-group {
+    flex-direction: column;
+    row-gap: 15px;
+  }
+  .form-group .cep-input,
+  .form-group .state-input,
+  .form-group .city-input {
+    max-width: 100%;
+  }
+  .form-group p {
+    width: 100%;
+  }
+}

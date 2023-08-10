@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validation Form</title>
+    <!--FONTS MONTSERRAT-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900"
+      rel="stylesheet"
+    />
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <div class="formContainer">
+      <h2>Form to valitation</h2>
+      <form class="registre-form">
+        <label for="name" class="labelInput">Nome</label>
+        <input
+          type="text"
+          name="name"
+          class="required formInput name"
+          id="name"
+          placeholder="Digite seu nome"
+          onblur="blurAllField(event)"
+        />
+        <label for="rg" class="labelInput">RG</label>
+        <input
+          type="text"
+          name="rg"
+          class="required formInput rg"
+          id="rg"
+          placeholder="Seu RG"
+          maxlength="16"
+          onblur="blurAllField(event)"
+        />
+        <label for="email" class="labelInput">E-mail</label>
+        <input
+          type="email"
+          name="email"
+          class="required formInput email"
+          id="email"
+          placeholder="Seu e-mail"
+          onblur="blurAllField(event)"
+        />
+        <label for="phoneNumber" class="labelInput">Telefone</label>
+        <input
+          type="text"
+          name="phoneNumber"
+          class="required formInput phoneNumber"
+          id="phoneNumber"
+          placeholder="Seu telefone"
+          maxlength="11"
+          onblur="blurAllField(event)"
+        />
+        <div class="form-group">
+          <label for="postalCode" class="labelInput">CEP</label>
+          <input
+            type="text"
+            name="postalCode"
+            class="required cep-input postalCode"
+            id="postalCode"
+            placeholder="Seu cep"
+            maxlength="8"
+            onblur="blurAllField(event)"
+          />
+          <p class="completeAddress">Completar endereço com CEP</p>
+        </div>
+        <label for="street" class="labelInput">Rua</label>
+        <input
+          type="text"
+          name="street"
+          class="required formInput street"
+          id="street"
+          placeholder="Seu rua"
+        />
+        <label for="homeNumber" class="labelInput">Rua</label>
+        <input
+          type="text"
+          name="homeNumber"
+          class="required formInput homeNumber"
+          id="homeNumber"
+          placeholder="Número"
+        />
+        <input
+          type="text"
+          name="complement"
+          class="formInput"
+          id="complement"
+          placeholder="Complemento"
+        />
+        <label for="neighborhood" class="labelInput">Bairro</label>
+        <input
+          type="text"
+          name="neighborhood"
+          class="required formInput neighborhood"
+          id="neighborhood"
+          placeholder="Bairro"
+        />
+        <div class="form-group">
+          <label for="state" class="labelInput">UF</label>
+          <input
+            type="text"
+            name="state"
+            class="required state-input state"
+            id="state"
+            placeholder="UF"
+          />
+          <label for="city" class="labelInput">Cidade</label>
+          <input
+            type="text"
+            name="city"
+            class="required city-input city"
+            id="city"
+            placeholder="Cidade"
+          />
+        </div>
+        <button type="submit" class="formBtn">Continuar</button>
+        <span class="erroMsg"></span>
+      </form>
+    </div>
+    <script src="js/index.js"></script>
+  </body>
+</html>
