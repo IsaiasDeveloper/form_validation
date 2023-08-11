@@ -169,7 +169,7 @@ function blurAllField(event) {
     validatePhoneNumber(field);
   } else if (field.type === 'text' && field.name === 'postalCode') {
     // document.querySelector('.completeAddress').click();
-    getAddressWithCep(field);
+    getAddressWithCep();
   } else if (field.type === 'number' && field.name === 'number') {
     for (let erroText of form.querySelectorAll('.error-text')) {
       erroText.remove();
@@ -179,44 +179,65 @@ function blurAllField(event) {
 
 //Search address
 function searcheAddress(cep) {
-  let cepInput = document.getElementById('cep');
   const xhr = new XMLHttpRequest();
   const url = 'https://viacep.com.br/ws/' + cep + '/json/';
   xhr.open('GET', url, true);
-
   xhr.onload = function () {
-    if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-      const dados = JSON.parse(xhr.responseText);
+    if (xhr.readyState === xhr.DONE) {
+      if (xhr.status === 200) {
+        const dados = JSON.parse(xhr.responseText);
 
-      document.getElementById('street').value = dados.logradouro;
-      document.getElementById('neighborhood').value = dados.bairro;
-      document.getElementById('city').value = dados.localidade;
-      document.getElementById('state').value = dados.uf;
-    } else {
-      const span = document.createElement('span');
-      span.innerHTML = 'CEP Inválido!';
-      span.classList.add('error-text');
-      cepInput.insertAdjacentElement('afterend', span);
-      return false;
+        if (dados.erro) {
+          errorMsg.innerHTML = 'O "CEP" digitado não existe!';
+          document.getElementById('postalCode').classList.add('fieldError');
+          document.getElementById('postalCode').focus();
+        } else {
+          const streetInput = document.getElementById('street');
+          const neighborhoodInput = document.getElementById('neighborhood');
+          const cityInput = document.getElementById('city');
+          const stateInput = document.getElementById('state');
+
+          streetInput.value = dados.logradouro || '';
+          neighborhoodInput.value = dados.bairro || '';
+          cityInput.value = dados.localidade || '';
+          stateInput.value = dados.uf || '';
+
+          streetInput.disabled = true;
+          neighborhoodInput.disabled = true;
+          cityInput.disabled = true;
+          stateInput.disabled = true;
+
+          errorMsg.innerHTML = '';
+        }
+      } else {
+        errorMsg.innerHTML =
+          'Ocorreu um erro. Por favor, busque pelo "CEP" novamente.';
+      }
     }
   };
 
   xhr.send();
-  return true;
 }
 
 document
   .querySelector('.completeAddress')
   .addEventListener('click', getAddressWithCep);
 
-function getAddressWithCep(field) {
+function getAddressWithCep() {
   let cepInput = document.getElementById('postalCode').value;
   let errorMsg = document.querySelector('.erroMsg');
+  if (cepInput.length === 0) {
+    errorMsg.innerHTML = '';
+    errorMsg.innerHTML = 'O "CEP" não pode ficar vázio!';
+    document.getElementById('postalCode').classList.add('fieldError');
+    document.getElementById('postalCode').focus();
+    return false;
+  }
   if (cepInput.length < 8 || cepInput.length === '') {
     errorMsg.innerHTML = '';
-    errorMsg.innerHTML = 'CEP inválido!';
-    field.classList.add('fieldError');
-    field.focus();
+    errorMsg.innerHTML = '"CEP" inválido!';
+    document.getElementById('postalCode').classList.add('fieldError');
+    document.getElementById('postalCode').focus();
     return false;
   }
   const rawValue = cepInput.replace(/[^\d]/g, '');
@@ -225,8 +246,8 @@ function getAddressWithCep(field) {
 
   let cep = rawValue;
   searcheAddress(cep);
-  field.classList.remove('fieldError');
-  field.blur();
+  document.getElementById('postalCode').classList.remove('fieldError');
+  document.getElementById('postalCode').blur();
   return true;
 }
 
@@ -239,3 +260,19 @@ function createErrorMsg(field, label) {
     errorMsg.innerHTML = `O campo "${label}" é inválido!`;
   }
 }
+
+// Remover o "focus()" quando for clicado fora do campo do formulário
+const formElement = document.querySelector('.registre-form');
+const inputFields = formElement.querySelectorAll('input');
+function removeFocus() {
+  inputFields.forEach((input) => {
+    input.blur();
+  });
+}
+document.addEventListener('clcik', function (event) {
+  const elClk = event.target;
+  if (!formElement.contains(elClk)) {
+    removeFocus();
+    console.log('Clicou!');
+  }
+});
