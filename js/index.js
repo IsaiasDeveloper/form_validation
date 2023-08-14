@@ -44,24 +44,38 @@ document
           }
         }
         if (field.classList.contains('postalCode')) {
-          let cep = field.value;
           if (!getAddressWithCep()) {
             createErrorMsg(field, label);
-            return false;
+            return (valid = false);
+          }
+        }
+        if (field.classList.contains('homeNumber')) {
+          if (!validateHomeNumber(field)) {
+            createErrorMsg(field, label);
+            return;
           }
         }
         field.classList.remove('fieldError');
         field.blur();
       }
+
       return true;
     }
 
     valitationFields();
-    // document.querySelector('.completeAddress').click();
-    valitationFields()
-      ? console.log('Todos os campos validados com sucesso!')
-      : console.log('Há campos invãlidos!');
+
+    if (!valitationFields()) {
+      return;
+    }
+    alert('Dados validados com sucesso!');
+
+    const inputList = document.querySelectorAll('input');
+    inputList.forEach((e) => {
+      e.value = '';
+      e.classList.remove('fieldError');
+    });
   });
+
 function validateName(field) {
   const name = field.value;
   const nameRegex = /^[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$/;
@@ -72,7 +86,6 @@ function validateName(field) {
     field.focus();
     return false;
   } else if (name.length < 5) {
-    errorMsg.innerHTML = '';
     errorMsg.innerHTML = `O campo "Nome" precisa ter mais de 5 caracteres.`;
     field.classList.add('fieldError');
     field.focus();
@@ -129,6 +142,8 @@ function validatePhoneNumber(field) {
   if (/[^\d\s()-]/.test(field.value)) {
     let label = 'Telefone';
     createErrorMsg(field, label);
+    field.classList.add('fieldError');
+    field.focus();
     return false;
   }
   const ddd = phoneNumber.substring(0, 2);
@@ -151,13 +166,26 @@ function validatePhoneNumber(field) {
   field.blur();
   return true;
 }
-
+function validateHomeNumber(field) {
+  const homeNumber = document.querySelector('#homeNumber');
+  var regex = /^\d+$/;
+  regex.test(homeNumber.value);
+  if (!regex.test(homeNumber.value)) {
+    // let label = 'Número';
+    // createErrorMsg(field, label); O "CEP" digitado não existe!
+    errorMsg.innerHTML = 'cep falso';
+    document.getElementById('postalCode').classList.add('fieldError');
+    document.getElementById('postalCode').focus();
+    return false;
+  }
+  document.getElementById('postalCode').classList.remove('fieldError');
+  document.getElementById('postalCode').blur();
+  errorMsg.innerHTML = '';
+  return true;
+}
 //Blur events functions
 function blurAllField(event) {
   const form = document.querySelector('.registre-form');
-  // for (let erroText of form.querySelectorAll('.error-text')) {
-  //   erroText.remove();
-  // }
   const field = event.target;
   if (field.type === 'text' && field.name === 'name') {
     validateName(field);
@@ -170,10 +198,8 @@ function blurAllField(event) {
   } else if (field.type === 'text' && field.name === 'postalCode') {
     // document.querySelector('.completeAddress').click();
     getAddressWithCep();
-  } else if (field.type === 'number' && field.name === 'number') {
-    for (let erroText of form.querySelectorAll('.error-text')) {
-      erroText.remove();
-    }
+  } else if (field.type === 'text' && field.name === 'homeNumber') {
+    validateHomeNumber(field);
   }
 }
 
@@ -259,6 +285,9 @@ function createErrorMsg(field, label) {
     errorMsg.innerHTML = '';
     errorMsg.innerHTML = `O campo "${label}" é inválido!`;
   }
+  field.classList.add('fieldError');
+  field.focus();
+  return;
 }
 
 // Remover o "focus()" quando for clicado fora do campo do formulário
