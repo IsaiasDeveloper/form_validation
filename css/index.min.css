@@ -1,0 +1,144 @@
+body,
+form {
+  display: flex;
+}
+.cep-input,
+.city-input,
+.formInput,
+.state-input {
+  height: 35px;
+  background-color: transparent;
+  outline: 0;
+}
+.form-group p,
+.formBtn {
+  color: var(--whiteColor);
+}
+.erroMsg,
+.form-group p,
+h2 {
+  text-align: center;
+}
+:root {
+  --blackColor: #000;
+  --whiteColor: #fff;
+  --greenColor: #008000;
+  --errorMsg: #ff0000;
+  --input-radius: 5px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  justify-content: center;
+  align-items: center;
+  font-family: Montserrat;
+}
+.formContainer {
+  max-width: 500px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 40px 10px;
+}
+.city-input,
+.form-group p,
+.formInput {
+  padding: 5px;
+  width: 100%;
+}
+h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+form {
+  width: 100%;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  row-gap: 15px;
+}
+.formInput {
+  border: 1px solid;
+  border-radius: var(--input-radius);
+}
+.labelInput {
+  display: none;
+}
+.form-group {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cep-input,
+.state-input {
+  border: 1px solid;
+  border-radius: var(--input-radius);
+  padding: 5px;
+  max-width: 150px;
+  width: 100%;
+}
+.form-group p {
+  background-color: var(--blackColor);
+  font-weight: 500;
+  font-size: 13px;
+  border-radius: 20px;
+  max-width: 310px;
+  min-height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.6s;
+  cursor: pointer;
+}
+.form-group p:hover,
+.formBtn:hover {
+  transform: scale(1.02);
+}
+.form-group p:active,
+.formBtn:active {
+  filter: brightness(75%);
+}
+.city-input {
+  border: 1px solid;
+  border-radius: var(--input-radius);
+  max-width: 315px;
+}
+.formBtn {
+  border: none;
+  background-color: var(--greenColor);
+  border-radius: 20px;
+  padding: 10px 35px;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 20px auto 0;
+  transition: 0.4s;
+}
+.erroMsg {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--errorMsg);
+}
+.fieldError {
+  outline: auto;
+  outline-color: var(--errorMsg);
+}
+@media (max-width: 576px) {
+  .form-group {
+    flex-direction: column;
+    row-gap: 15px;
+  }
+  .form-group .cep-input,
+  .form-group .city-input,
+  .form-group .state-input {
+    max-width: 100%;
+  }
+  .form-group p {
+    width: 100%;
+  }
+}

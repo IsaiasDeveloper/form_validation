@@ -73,7 +73,7 @@
           name="street"
           class="required formInput street"
           id="street"
-          placeholder="Seu rua"
+          placeholder="Sua rua"
         />
         <label for="homeNumber" class="labelInput">Número</label>
         <input
@@ -124,3 +124,11 @@
     <script src="js/index.js"></script>
   </body>
 </html>
+<script>
+  let toShoppingCartBtn = document.querySelectorAll('.botao');
+  if (toShoppingCartBtn) {
+    function toShoppingCart() {
+      window.location.href = `/api/comprar.aspx?id=${courseId}`;
+    }
+  }
+</script>

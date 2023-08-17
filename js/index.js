@@ -55,6 +55,7 @@ document
             return;
           }
         }
+
         field.classList.remove('fieldError');
         field.blur();
       }
@@ -68,13 +69,17 @@ document
       return;
     }
     alert('Dados validados com sucesso!');
-
-    const inputList = document.querySelectorAll('input');
-    inputList.forEach((e) => {
-      e.value = '';
-      e.classList.remove('fieldError');
-    });
+    cleanFields();
   });
+
+function cleanFields() {
+  const inputList = [...document.querySelectorAll('input')];
+  inputList.forEach((e) => {
+    e.classList.remove('fieldError');
+    e.value = '';
+    console.log(e.value);
+  });
+}
 
 function validateName(field) {
   const name = field.value;
@@ -166,6 +171,7 @@ function validatePhoneNumber(field) {
   field.blur();
   return true;
 }
+
 function validateHomeNumber(field) {
   const homeNumber = document.querySelector('#homeNumber');
   var regex = /^\d+$/;
@@ -183,6 +189,7 @@ function validateHomeNumber(field) {
   errorMsg.innerHTML = '';
   return true;
 }
+
 //Blur events functions
 function blurAllField(event) {
   const form = document.querySelector('.registre-form');
@@ -197,6 +204,9 @@ function blurAllField(event) {
     validatePhoneNumber(field);
   } else if (field.type === 'text' && field.name === 'postalCode') {
     // document.querySelector('.completeAddress').click();
+    /*
+    ACREDITO QUE NÃO ESTÁ LIMPANDO OS CAMPOS DEVIDO A ESSA CHAMANA.
+    */
     getAddressWithCep();
   } else if (field.type === 'text' && field.name === 'homeNumber') {
     validateHomeNumber(field);
