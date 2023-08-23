@@ -3,6 +3,8 @@
   --whiteColor: #fff;
   --greenColor: #008000;
   --errorMsg: #ff0000;
+  --grayColor: #e8e6e6;
+  --darkTransparenColor: #29272770;
 
   --input-radius: 5px;
 }
@@ -15,21 +17,30 @@
 
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: 'Montserrat';
 }
+
 .formContainer {
   max-width: 500px;
   width: 90%;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  padding: 40px 10px;
+  padding: 20px 10px;
+  border: 1px solid;
 }
 h2 {
   font-size: 32px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.formTitle {
+  font-size: 20px;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -135,6 +146,141 @@ form {
   outline: auto;
   outline-color: var(--errorMsg);
 }
+
+nav {
+  background-color: var(--blackColor);
+  color: var(--whiteColor);
+  padding: 15px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+nav li {
+  margin: 0 15px;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--whiteColor);
+}
+
+header {
+  background-image: url(https://images.pexels.com/photos/12360852/pexels-photo-12360852.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+#inicio,
+#servicos {
+  background-color: var(--grayColor);
+}
+#servicos {
+}
+section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 50px;
+}
+
+footer {
+  background-color: var(--blackColor);
+  color: var(--whiteColor);
+  text-align: center;
+  padding: 20px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+/* Confirmation Window */
+.confirmationWindow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--darkTransparenColor);
+  color: var(--blackColor);
+  display: none;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+}
+.confirmationContainer {
+  padding: 20px;
+  background-color: var(--grayColor);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.confirmationTitle {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+.confirmationTextBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  margin-bottom: 30px;
+}
+.confirmationText {
+  font-size: 16px;
+  line-height: 25px;
+  text-align: start;
+}
+
+.confirmationBtnBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.confirmationBtn {
+  background-color: var(--blackColor);
+  color: var(--whiteColor);
+  padding: 5px 25px;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.confirmationBtn:hover {
+  transform: scale(1.03);
+}
+.confirmationBtn:active {
+  filter: brightness(75%);
+}
+/* @media screen and (max-width: 768px) {
+  header {
+    padding: 100px 0;
+  }
+
+  section {
+    padding: 30px;
+  }
+} */
+
 @media (max-width: 576px) {
   .form-group {
     flex-direction: column;

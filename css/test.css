@@ -1,0 +1,29 @@
+:root {
+  --blackColor: #000;
+  --whiteColor: #fff;
+  --greenColor: #008000;
+  --errorMsg: #ff0000;
+  --grayColor: #e8e6e6;
+  --darkTransparenColor: #29272770;
+
+  --input-radius: 5px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Montserrat';
+}
+.confirmationText {
+  font-size: 16px;
+  line-height: 25px;
+  text-align: start;
+}

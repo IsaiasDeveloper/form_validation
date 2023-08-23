@@ -1,4 +1,6 @@
 let errorMsg = document.querySelector('.erroMsg');
+const inputList = [...document.querySelectorAll('input')];
+const confirmationWindow = document.querySelector('.confirmationWindow');
 document
   .querySelector('.registre-form')
   .addEventListener('submit', function (event) {
@@ -69,13 +71,58 @@ document
     if (!valitationFields()) {
       return;
     }
+    inputList.forEach((e) => {
+      console.log(e.value + '\n');
+    });
     alert('Dados validados com sucesso!');
+
+    // LocalStorage
+    const formData = {};
+    formData.name = document.querySelector('#name').value;
+    formData.rg = document.querySelector('#rg').value;
+    formData.email = document.querySelector('#email').value;
+    formData.phoneNumber = document.querySelector('#phoneNumber').value;
+    formData.postalCode = document.querySelector('#postalCode').value;
+    formData.street = document.querySelector('#street').value;
+    formData.homeNumber = document.querySelector('#homeNumber').value;
+    formData.complement = document.querySelector('#complement').value;
+    formData.neighborhood = document.querySelector('#neighborhood').value;
+    formData.state = document.querySelector('#state').value;
+    formData.city = document.querySelector('#city').value;
+
+    localStorage.setItem('formData', JSON.stringify(formData));
+    confirmationDate();
+
     cleanFields();
+
+    // window.location.href = '/test.html';
   });
+function confirmationDate() {
+  try {
+    confirmationWindow.style.display = 'flex';
+    const confirmationPopup = document.querySelector('.confirmationTextBox');
+    const storedData = JSON.parse(localStorage.getItem('formData'));
+    confirmationPopup.innerHTML = `
+      <p class="confirmationText"><b>Nome: </b>${storedData.name}</p>
+      <p class="confirmationText"><b>RG: </b>${storedData.rg}</p>
+      <p class="confirmationText"><b>E-mail: </b>${storedData.email}</p>
+      <p class="confirmationText"><b>Telefone: </b>${storedData.phoneNumber}</p>
+      <p class="confirmationText"><b>CEP: </b>${storedData.postalCode}</p>
+      <p class="confirmationText"><b>Rua: </b>${storedData.street}</p>
+      <p class="confirmationText"><b>Número: </b>${storedData.homeNumber}</p>
+      <p class="confirmationText"><b>Complemento: </b>${storedData.complement}</p>
+      <p class="confirmationText"><b>Bairro: </b>${storedData.neighborhood}</p>
+      <p class="confirmationText"><b>UF: </b>${storedData.state}</p>
+      <p class="confirmationText"><b>Cidade: </b>${storedData.city}</p>
+    `;
+  } catch (er) {
+    console.warn(er);
+  }
+}
+document.querySelector('.toBackBtn').addEventListener('click', editDate);
+document.querySelector('.toGoBtn').addEventListener('click', sendDate);
 
 function cleanFields() {
-  const inputList = [...document.querySelectorAll('input')];
-
   inputList.forEach((e) => {
     e.classList.remove('fieldError');
     e.value = '';
@@ -205,10 +252,6 @@ function blurAllField(event) {
   } else if (field.type === 'text' && field.name === 'phoneNumber') {
     validatePhoneNumber(field);
   } else if (field.type === 'text' && field.name === 'postalCode') {
-    // document.querySelector('.completeAddress').click();
-    /*
-    ACREDITO QUE NÃO ESTÁ LIMPANDO OS CAMPOS DEVIDO A ESSA CHAMANA.
-    */
     getAddressWithCep();
   } else if (field.type === 'text' && field.name === 'homeNumber') {
     validateHomeNumber(field);
@@ -302,18 +345,52 @@ function createErrorMsg(field, label) {
   return;
 }
 
+function editDate() {
+  try {
+    const storedData = JSON.parse(localStorage.getItem('formData'));
+    document.querySelector('#name').value = storedData.name;
+    document.querySelector('#rg').value = storedData.rg;
+    document.querySelector('#email').value = storedData.email;
+    document.querySelector('#phoneNumber').value = storedData.phoneNumber;
+    document.querySelector('#postalCode').value = storedData.postalCode;
+    document.querySelector('#street').value = storedData.street;
+    document.querySelector('#homeNumber').value = storedData.homeNumber;
+    document.querySelector('#complement').value = storedData.complement;
+    document.querySelector('#neighborhood').value = storedData.neighborhood;
+    document.querySelector('#state').value = storedData.state;
+    document.querySelector('#city').value = storedData.city;
+    confirmationWindow.style.display = 'none';
+  } catch (er) {
+    console.warn(er);
+  }
+}
+
+function sendDate() {
+  window.location.href = '/test.html';
+}
 // Remover o "focus()" quando for clicado fora do campo do formulário
 const formElement = document.querySelector('.registre-form');
-const inputFields = formElement.querySelectorAll('input');
-function removeFocus() {
+const inputFields = [...formElement.querySelectorAll('input')];
+
+function removeFocusAndErrors(elClk) {
   inputFields.forEach((input) => {
-    input.blur();
+    // input.blur();
+    input.classList.remove('fieldError');
   });
+  console.log(inputFields.length);
+
+  errorMsg.innerHTML = '';
 }
-document.addEventListener('clcik', function (event) {
+
+document.addEventListener('click', function (event) {
   const elClk = event.target;
   if (!formElement.contains(elClk)) {
-    removeFocus();
-    console.log('Clicou!');
+    setTimeout(() => {
+      inputFields.forEach((input) => {
+        input.blur();
+      });
+      removeFocusAndErrors();
+      console.log('Clicou fora do formulário!');
+    }, 0);
   }
 });

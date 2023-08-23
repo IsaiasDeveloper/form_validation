@@ -13,113 +13,161 @@
     <link rel="stylesheet" href="css/index.css" />
   </head>
   <body>
-    <div class="formContainer">
-      <h2>Form to valitation</h2>
-      <form class="registre-form">
-        <label for="name" class="labelInput">Nome</label>
-        <input
-          type="text"
-          name="name"
-          class="required formInput name"
-          id="name"
-          placeholder="Digite seu nome"
-          onblur="blurAllField(event)"
-        />
-        <label for="rg" class="labelInput">RG</label>
-        <input
-          type="text"
-          name="rg"
-          class="required formInput rg"
-          id="rg"
-          placeholder="Seu RG"
-          maxlength="16"
-          onblur="blurAllField(event)"
-        />
-        <label for="email" class="labelInput">E-mail</label>
-        <input
-          type="email"
-          name="email"
-          class="required formInput email"
-          id="email"
-          placeholder="Seu e-mail"
-          onblur="blurAllField(event)"
-        />
-        <label for="phoneNumber" class="labelInput">Telefone</label>
-        <input
-          type="text"
-          name="phoneNumber"
-          class="required formInput phoneNumber"
-          id="phoneNumber"
-          placeholder="Seu telefone"
-          maxlength="11"
-          onblur="blurAllField(event)"
-        />
-        <div class="form-group">
-          <label for="postalCode" class="labelInput">CEP</label>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section id="inicio">
+      <h1>Seja Bem-vindo!</h1>
+      <p>Texto introdutório sobre a página.</p>
+    </section>
+    <section id="sobre">
+      <h2>Sobre Nós</h2>
+      <p>Informações sobre a empresa ou pessoa por trás da página.</p>
+    </section>
+    <section id="servicos">
+      <h2>Nossos Serviços</h2>
+      <ul>
+        <li>Serviço 1</li>
+        <li>Serviço 2</li>
+        <li>Serviço 3</li>
+      </ul>
+    </section>
+    <section id="contato">
+      <h2>Entre em Contato</h2>
+      <p>Informações de contato e formulário de contato.</p>
+
+      <div class="formContainer">
+        <p class="formTitle">Form to valitation</p>
+        <form class="registre-form">
+          <label for="name" class="labelInput">Nome</label>
           <input
             type="text"
-            name="postalCode"
-            class="required cep-input postalCode"
-            id="postalCode"
-            placeholder="Seu cep"
-            maxlength="8"
+            name="name"
+            class="required formInput name"
+            id="name"
+            placeholder="Digite seu nome"
             onblur="blurAllField(event)"
           />
-          <p class="completeAddress">Completar endereço com CEP</p>
-        </div>
-        <label for="street" class="labelInput">Rua</label>
-        <input
-          type="text"
-          name="street"
-          class="required formInput street"
-          id="street"
-          placeholder="Sua rua"
-        />
-        <label for="homeNumber" class="labelInput">Número</label>
-        <input
-          type="text"
-          name="homeNumber"
-          class="required formInput homeNumber"
-          id="homeNumber"
-          placeholder="Número"
-          onblur="blurAllField(event)"
-        />
-        <input
-          type="text"
-          name="complement"
-          class="formInput"
-          id="complement"
-          placeholder="Complemento"
-        />
-        <label for="neighborhood" class="labelInput">Bairro</label>
-        <input
-          type="text"
-          name="neighborhood"
-          class="required formInput neighborhood"
-          id="neighborhood"
-          placeholder="Bairro"
-        />
-        <div class="form-group">
-          <label for="state" class="labelInput">UF</label>
+          <label for="rg" class="labelInput">RG</label>
           <input
             type="text"
-            name="state"
-            class="required state-input state"
-            id="state"
-            placeholder="UF"
+            name="rg"
+            class="required formInput rg"
+            id="rg"
+            placeholder="Seu RG"
+            maxlength="16"
+            onblur="blurAllField(event)"
           />
-          <label for="city" class="labelInput">Cidade</label>
+          <label for="email" class="labelInput">E-mail</label>
+          <input
+            type="email"
+            name="email"
+            class="required formInput email"
+            id="email"
+            placeholder="Seu e-mail"
+            onblur="blurAllField(event)"
+          />
+          <label for="phoneNumber" class="labelInput">Telefone</label>
           <input
             type="text"
-            name="city"
-            class="required city-input city"
-            id="city"
-            placeholder="Cidade"
+            name="phoneNumber"
+            class="required formInput phoneNumber"
+            id="phoneNumber"
+            placeholder="Seu telefone"
+            maxlength="11"
+            onblur="blurAllField(event)"
           />
+          <div class="form-group">
+            <label for="postalCode" class="labelInput">CEP</label>
+            <input
+              type="text"
+              name="postalCode"
+              class="required cep-input postalCode"
+              id="postalCode"
+              placeholder="Seu cep"
+              maxlength="8"
+              onblur="blurAllField(event)"
+            />
+            <p class="completeAddress">Completar endereço com CEP</p>
+          </div>
+          <label for="street" class="labelInput">Rua</label>
+          <input
+            type="text"
+            name="street"
+            class="required formInput street"
+            id="street"
+            placeholder="Sua rua"
+          />
+          <label for="homeNumber" class="labelInput">Número</label>
+          <input
+            type="text"
+            name="homeNumber"
+            class="required formInput homeNumber"
+            id="homeNumber"
+            placeholder="Número"
+            onblur="blurAllField(event)"
+          />
+          <input
+            type="text"
+            name="complement"
+            class="formInput"
+            id="complement"
+            placeholder="Complemento"
+          />
+          <label for="neighborhood" class="labelInput">Bairro</label>
+          <input
+            type="text"
+            name="neighborhood"
+            class="required formInput neighborhood"
+            id="neighborhood"
+            placeholder="Bairro"
+          />
+          <div class="form-group">
+            <label for="state" class="labelInput">UF</label>
+            <input
+              type="text"
+              name="state"
+              class="required state-input state"
+              id="state"
+              placeholder="UF"
+            />
+            <label for="city" class="labelInput">Cidade</label>
+            <input
+              type="text"
+              name="city"
+              class="required city-input city"
+              id="city"
+              placeholder="Cidade"
+            />
+          </div>
+          <button type="submit" class="formBtn" id="submitButton">
+            Continuar
+          </button>
+          <span class="erroMsg"></span>
+        </form>
+      </div>
+    </section>
+    <footer>
+      <p>&copy; 2023 Nome da Empresa. Todos os direitos reservados.</p>
+    </footer>
+    <div class="confirmationWindow">
+      <div class="confirmationContainer">
+        <h3 class="confirmationTitle">Seu dados estão corretos?</h3>
+        <div class="confirmationTextBox">
+          <p class="confirmationText"><b>Nome: </b>Isaias Santana dos Santos</p>
         </div>
-        <button type="submit" class="formBtn">Continuar</button>
-        <span class="erroMsg"></span>
-      </form>
+        <div class="confirmationBtnBox">
+          <p class="toBackBtn confirmationBtn">Editar</p>
+          <p class="toGoBtn confirmationBtn">Enviar</p>
+        </div>
+      </div>
     </div>
     <script src="js/index.js"></script>
   </body>
