@@ -43,12 +43,13 @@ document
             return (valid = false);
           }
         }
-        if (field.classList.contains('postalCode')) {
-          if (!getAddressWithCep()) {
-            createErrorMsg(field, label);
-            return (valid = false);
-          }
-        }
+        // ESTA CONDIÇÃO ESTÁ SENDO CHAMADA REPETIDAMENTE, IMPEDINDO A LIMPEZA DOS CAMPOS
+        // if (field.classList.contains('postalCode')) {
+        //   if (!getAddressWithCep()) {
+        //     createErrorMsg(field, label);
+        //     return (valid = false);
+        //   }
+        // }
         if (field.classList.contains('homeNumber')) {
           if (!validateHomeNumber(field)) {
             createErrorMsg(field, label);
@@ -74,6 +75,7 @@ document
 
 function cleanFields() {
   const inputList = [...document.querySelectorAll('input')];
+
   inputList.forEach((e) => {
     e.classList.remove('fieldError');
     e.value = '';
